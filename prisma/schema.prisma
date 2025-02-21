@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Book {
+  id            String  @id @default(cuid())
+  title         String
+  yearPublished Int
+  description   String
+  genre         String
+  isLended      Boolean @default(false)
+  authorId      String
+  author        Author  @relation("AuthorBooks", fields: [authorId], references: [id])
+  Loan          Loan[]
+}
+
+model Author {
+  id          String @id @default(cuid())
+  name        String
+  birthYear   Int
+  nationality String
+  books       Book[] @relation("AuthorBooks")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  document  String   @unique
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Loan      Loan[]
+}
+
+model Loan {
+  id         String     @id @default(cuid())
+  bookId     String
+  userId     String
+  loanDate   DateTime   @default(now())
+  returnDate DateTime?
+  status     LoanStatus @default(PENDING)
+
+  book Book @relation(fields: [bookId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([bookId])
+  @@index([userId])
+}
+
+enum LoanStatus {
+  PENDING
+  RETURNED
+  OVERDUE
+}
