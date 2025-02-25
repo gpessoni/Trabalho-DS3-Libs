@@ -66,18 +66,16 @@ Abaixo estão as rotas disponíveis para interagir com a API:
     
 
 ### **Empréstimos**
-
-*   **GET /loan**: Retorna a lista de todos os empréstimos.
-    
-*   **GET /loan/:id**: Retorna um empréstimo específico pelo ID.
-    
-*   jsonCopiarEditar{ "bookId": 1, "userId": 2}
     
 *   **POST /loans/**: Cria um empréstimo de livro
     
-*   **POST /loans/return/:id**: Realiza a devolução de um livro
+*   **PUT /loans/return**: Realiza a devolução de um livro
 
-    
+*   **GET /current**: Ver os empréstimos que estão ativos
+
+*   **GET /book/:bookId**: Ver histórico de emprésitmos por livro
+
+*   **GET /user/:userId**: Ver histórico de emprésitmos por usuário    
 
 Como Funciona
 -------------
