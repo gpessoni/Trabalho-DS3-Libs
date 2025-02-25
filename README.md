@@ -2,7 +2,7 @@
 
 Este é um sistema de gerenciamento de livros, autores, usuários e empréstimos, desenvolvido com **Node.js**, **TypeScript** e **Prisma**. O sistema permite a criação, leitura, atualização e exclusão de livros, autores, usuários e empréstimos, utilizando **PostgreSQL** como banco de dados.
 
-O sistema foi projetado sem seguir conceitos de **Programação Orientada a Objetos (POO)**, mas com uma abordagem eficiente de gerenciamento de dados, utilizando o **Prisma ORM** para interagir com o banco de dados de maneira estruturada e simples.
+O sistema foi projetado com uma abordagem eficiente de gerenciamento de dados, utilizando o **Prisma ORM** para interagir com o banco de dados de maneira estruturada e simples.
 
 ## Tecnologias Utilizadas
 
