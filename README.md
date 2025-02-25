@@ -1,4 +1,4 @@
-# Sistema de Empréstimos de Livros com Prisma
+# Sistema de Empréstimos de Livros com Nodejs, Prisma e PostgreSQL
 
 Este é um sistema de gerenciamento de livros, autores, usuários e empréstimos, desenvolvido com **Node.js**, **TypeScript** e **Prisma**. O sistema permite a criação, leitura, atualização e exclusão de livros, autores, usuários e empréstimos, utilizando **PostgreSQL** como banco de dados.
 
