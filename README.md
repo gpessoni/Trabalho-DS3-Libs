@@ -30,6 +30,23 @@ src/
 └── .env              # Variáveis de ambiente, como URL do banco de dados
 ``` 
 
+
+Instalação
+----------
+
+1.  git clone
+    
+2.  npm install
+
+3. Criar um banco de dados local com o docker: docker run -e DATABASE_URL="postgresql://postgres:postgres@localhost:5432/book" -p 3000:3000 
+
+4. Criar um .env com a string de conexão: DATABASE_URL="postgresql://postgres:postgres@localhost:5432/books"
+
+5. Criar a migration do banco de dados com o comando npx prisma migrate dev
+    
+6.  npm run dev
+
+
 Rotas
 -----
 
