@@ -30,6 +30,23 @@ src/
 └── .env              # Variáveis de ambiente, como URL do banco de dados
 ``` 
 
+
+Instalação
+----------
+
+1.  git clone
+    
+2.  npm install
+
+3. Criar um banco de dados local com o docker: docker run -e DATABASE_URL="postgresql://postgres:postgres@localhost:5432/book" -p 3000:3000 
+
+4. Criar um .env com a string de conexão: DATABASE_URL="postgresql://postgres:postgres@localhost:5432/books"
+
+5. Criar a migration do banco de dados com o comando npx prisma migrate dev
+    
+6.  npm run dev
+
+
 Rotas
 -----
 
@@ -41,8 +58,9 @@ Abaixo estão as rotas disponíveis para interagir com a API:
     
 *   **GET /authors/:id**: Retorna um autor específico pelo ID.
     
-*   jsonCopiarEditar{ "name": "J.R.R. Tolkien", "bio": "Escritor britânico", "nationality": "British", "birthDate": "1892-01-03"}
-    
+  ```js
+{ "name": "J.R.R. Tolkien", "bio": "Escritor britânico", "nationality": "British", "birthDate": "1892-01-03"}
+ ```
 *   **PUT /authors/:id**: Atualiza as informações de um autor específico.
     
 *   **DELETE /authors/:id**: Exclui um autor específico.
@@ -77,17 +95,6 @@ Abaixo estão as rotas disponíveis para interagir com a API:
 
 *   **GET /user/:userId**: Ver histórico de emprésitmos por usuário    
 
-Como Funciona
--------------
-
-*   **Modelo de Dados**: Todos os dados (livros, autores e empréstimos) são armazenados em arquivos JSON na pasta src/data.
-    
-*   **POO (Programação Orientada a Objetos)**: O sistema utiliza classes e instâncias para representar os modelos de dados. Cada entidade (Livro, Autor, Empréstimo, etc.) é representada por uma classe, e o acesso aos dados é feito por meio de repositórios que implementam as operações CRUD.
-    
-*   **Relacionamento entre Autor e Livro**: Ao criar um livro, é necessário fornecer o authorId, que deve corresponder ao ID de um autor já existente.
-    
-*   **Empréstimos**: O sistema permite que os livros sejam emprestados para os usuários. Quando um empréstimo é feito, o número de cópias disponíveis do livro é decrementado, e quando o livro é devolvido, a cópia é restaurada.
-    
 
 Documentação
 -------------
