@@ -4,12 +4,12 @@ import { handleError } from "../utils/errorHandler";
 
 class BookController {
   async create(req: Request, res: Response) {
-    const { title, authorId, yearPublished, description, genre } = req.body;
-    if (!title || !authorId || !yearPublished || !description || !genre)
+    const { title, authorId, isbn, yearPublished, description, genre } = req.body;
+    if (!title || !authorId || !isbn || !yearPublished || !description || !genre)
       return handleError(res, new Error("Required data not provided."), "Validation Error", 400);
 
     try {
-      const book = await bookService.createBook({ title, authorId, yearPublished, description, genre });
+      const book = await bookService.createBook({ title, authorId, isbn, yearPublished, description, genre });
       return res.status(201).json(book);
     } catch (err) {
       return handleError(res, err as Error, "Error creating the book.");
@@ -44,11 +44,12 @@ class BookController {
   }
 
   async update(req: Request, res: Response) {
-    const { title, authorId, yearPublished, description, genre } = req.body;
+    const { title, authorId, isbn, yearPublished, description, genre } = req.body;
     try {
       const updatedBook = await bookService.updateBook(req.params.id, {
         title,
         authorId,
+        isbn,
         yearPublished,
         description,
         genre,

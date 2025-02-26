@@ -11,6 +11,11 @@ const createBookSchema = Joi.object({
     "string.empty": "Author is required.",
     "any.required": "Author is required.",
   }),
+  isbn: Joi.string().required().messages({
+    "string.base": "ISBN must be a string.",
+    "string.empty": "ISBN is required.",
+    "any.required": "ISBN is required.",
+  }),
   yearPublished: Joi.number().required().messages({
     "number.base": "Year of publication must be a number.",
     "any.required": "Year of publication is required.",

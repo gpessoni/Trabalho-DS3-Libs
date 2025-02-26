@@ -3,11 +3,12 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 class BookService {
-  async createBook(data: { title: string; authorId: string; yearPublished: number; description: string; genre: string }) {
+  async createBook(data: { title: string; authorId: string; isbn: string, yearPublished: number; description: string; genre: string }) {
     return prisma.book.create({
       data: {
         title: data.title,
         authorId: data.authorId,
+        isbn: data.isbn,
         yearPublished: data.yearPublished,
         description: data.description,
         genre: data.genre,
@@ -51,7 +52,7 @@ class BookService {
     });
   }
 
-  async updateBook(id: string, data: { title?: string; authorId?: string; yearPublished?: number; description?: string; genre?: string }) {
+  async updateBook(id: string, data: { title?: string; authorId?: string; isbn?: string; yearPublished?: number; description?: string; genre?: string }) {
     return prisma.book.update({
       where: { id },
       data,

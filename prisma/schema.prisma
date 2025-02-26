@@ -10,6 +10,7 @@ datasource db {
 model Book {
   id            String  @id @default(cuid())
   title         String
+  isbn          String
   yearPublished Int
   description   String
   genre         String
