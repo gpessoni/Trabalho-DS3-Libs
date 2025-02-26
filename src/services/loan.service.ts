@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 class LoanService {
-  async createLoan(userId: string, bookId: string) {
+  async createLoan(userId: string, bookId: string, previewDate: Date) {
     const book = await prisma.book.findUnique({
       where: { id: bookId },
     });
@@ -20,6 +20,11 @@ class LoanService {
       data: {
         userId,
         bookId,
+        previewDate,
+      },
+      include: {
+        book: true,
+        user: true,
       },
     });
 

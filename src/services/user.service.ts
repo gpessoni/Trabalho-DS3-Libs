@@ -17,6 +17,18 @@ class UserService {
     return prisma.user.findMany();
   }
 
+  async getUserByEmail(email: string) {
+    return prisma.user.findUnique({
+      where: { email },
+    });
+  }
+
+  async getUserByDocument(document: string) {
+    return prisma.user.findUnique({
+      where: { document },
+    });
+  }
+
   async getUserById(id: string) {
     return prisma.user.findUnique({
       where: { id },

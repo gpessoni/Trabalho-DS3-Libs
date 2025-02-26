@@ -40,12 +40,13 @@ model User {
 }
 
 model Loan {
-  id         String     @id @default(cuid())
-  bookId     String
-  userId     String
-  loanDate   DateTime   @default(now())
-  returnDate DateTime?
-  status     LoanStatus @default(PENDING)
+  id          String     @id @default(cuid())
+  bookId      String
+  userId      String
+  loanDate    DateTime   @default(now())
+  returnDate  DateTime?
+  previewDate DateTime
+  status      LoanStatus @default(PENDING)
 
   book Book @relation(fields: [bookId], references: [id])
   user User @relation(fields: [userId], references: [id])

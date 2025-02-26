@@ -10,6 +10,17 @@ class UserController {
       return handleError(res, new Error("Required data not provided."), "Validation Error", 400);
     }
 
+
+    if (await userService.getUserByEmail(email)) {
+      return handleError(res, new Error("Email already in use."), "Email already in use.");
+    }
+
+    const sanitizedDocument = document.replace(/\D/g, '');
+
+    if (await userService.getUserByDocument(sanitizedDocument)) {
+      return handleError(res, new Error("Document already in use."), "Document already in use.");
+    }
+
     try {
       const user = await userService.createUser({ name, email, document });
       return res.status(201).json(user);

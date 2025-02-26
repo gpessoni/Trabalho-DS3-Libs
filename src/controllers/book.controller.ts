@@ -1,12 +1,27 @@
 import { Request, Response } from "express";
 import bookService from "../services/book.service";
+
+import authorService from "../services/author.service";
 import { handleError } from "../utils/errorHandler";
+
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 class BookController {
   async create(req: Request, res: Response) {
     const { title, authorId, isbn, yearPublished, description, genre } = req.body;
     if (!title || !authorId || !isbn || !yearPublished || !description || !genre)
       return handleError(res, new Error("Required data not provided."), "Validation Error", 400);
+
+    const authorExists = await authorService.getAuthorById(authorId);
+    if (!authorExists)
+      return handleError(
+        res,
+        new Error("Author not found."),
+        "Author not found",
+        404
+      );
 
     try {
       const book = await bookService.createBook({ title, authorId, isbn, yearPublished, description, genre });
@@ -72,6 +87,22 @@ class BookController {
 
 
   async delete(req: Request, res: Response) {
+    if (!req.params.id) {
+      return handleError(res, new Error("ID not provided."), "Validation Error", 400);
+    }
+
+    const bookExists = await bookService.getBookById(req.params.id);
+
+    if (!bookExists) {
+      return handleError(
+        res,
+        new Error("Book not found."),
+        "Book not found",
+        404
+      );
+    }
+
+
     try {
       await bookService.deleteBook(req.params.id);
       return res.status(204).send();

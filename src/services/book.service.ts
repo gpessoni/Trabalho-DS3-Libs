@@ -49,6 +49,9 @@ class BookService {
   async getNotLendedBooks() {
     return prisma.book.findMany({
       where: { isLended: false },
+      include: {
+        author: true,
+      },
     });
   }
 

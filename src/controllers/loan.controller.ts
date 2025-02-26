@@ -4,14 +4,14 @@ import { handleError } from "../utils/errorHandler";
 
 class LoanController {
   async create(req: Request, res: Response) {
-    const { userId, bookId } = req.body;
+    const { userId, bookId, previewDate } = req.body;
 
-    if (!userId || !bookId) {
+    if (!userId || !bookId || !previewDate) {
       return handleError(res, new Error("Required data not provided."), "Validation Error", 400);
     }
 
     try {
-      const loan = await loanService.createLoan(userId, bookId);
+      const loan = await loanService.createLoan(userId, bookId, previewDate);
       return res.status(201).json(loan);
     } catch (err) {
       return handleError(res, err as Error, "Error creating the loan.");
