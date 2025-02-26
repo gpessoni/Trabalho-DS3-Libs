@@ -41,8 +41,9 @@ Abaixo estão as rotas disponíveis para interagir com a API:
     
 *   **GET /authors/:id**: Retorna um autor específico pelo ID.
     
-*   jsonCopiarEditar{ "name": "J.R.R. Tolkien", "bio": "Escritor britânico", "nationality": "British", "birthDate": "1892-01-03"}
-    
+  ```js
+{ "name": "J.R.R. Tolkien", "bio": "Escritor britânico", "nationality": "British", "birthDate": "1892-01-03"}
+ ```
 *   **PUT /authors/:id**: Atualiza as informações de um autor específico.
     
 *   **DELETE /authors/:id**: Exclui um autor específico.
